@@ -1,22 +1,65 @@
 const validator = require('validator')
 const chalk = require('chalk')
 const getNotes = require('./notes')
+const yargs = require('yargs')
 
-const command = process.argv[2]
-const invalidArg = chalk.red('Please enter valid command')
+// Customise yargs version
+yargs.version('1.1.0')
 
-if (command === 'add') {
-    console.log('Adding note!')
-} else if (command === 'remove') {
-    console.log('Removing note!')
-} else {
-    console.log(invalidArg)
-}
+// Create 'add' command
+yargs.command({
+    command: 'add',
+    describe: 'Add a new note',
+    handler: function () {
+        console.log(chalk.green('Adding a new note!'))
+    }
+})
+
+// Create 'remove' command
+yargs.command({
+    command: 'remove',
+    describe: 'Remove a note',
+    handler: function () {
+        console.log(chalk.red('Removing existing note...'))
+    }
+})
+
+// Create 'list' command
+yargs.command({
+    command: 'list',
+    describe: 'List all notes',
+    handler: function () {
+        console.log(chalk.blue('Listing all notes...'))
+    }
+})
+
+// Create 'read' command
+yargs.command({
+    command: 'read',
+    describe: 'Read this note',
+    handler: function () {
+        console.log(chalk.yellow('Reading this note...'))
+    }
+})
+
+// Add, remove, read, list
+
+console.log(yargs.argv)
 
 
 
 
 
+
+// const command = process.argv[2]
+// const invalidArg = chalk.red('Please enter valid command')
+// if (command === 'add') {
+//     console.log('Adding note!')
+// } else if (command === 'remove') {
+//     console.log('Removing note!')
+// } else {
+//     console.log(invalidArg)
+// }
 
 // const msg = getNotes()
 // console.log(msg)
