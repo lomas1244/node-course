@@ -32,8 +32,15 @@ yargs.command({
 yargs.command({
   command: "remove",
   describe: "Remove a note",
-  handler: function() {
-    console.log(chalk.red("Removing existing note..."));
+  buidler: {
+    title: {
+      describe: "Note title",
+      demandOption: true,
+      type: "string"
+    }
+  },
+  handler: function(props) {
+    notes.removeNote(props.title);
   }
 });
 
