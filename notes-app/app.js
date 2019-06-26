@@ -23,7 +23,7 @@ yargs.command({
       type: "string"
     }
   },
-  handler: function(props) {
+  handler(props) {
     notes.addNote(props.title, props.body);
   }
 });
@@ -39,7 +39,7 @@ yargs.command({
       type: "string"
     }
   },
-  handler: function(props) {
+  handler(props) {
     notes.removeNote(props.title);
   }
 });
