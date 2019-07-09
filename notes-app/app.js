@@ -49,7 +49,7 @@ yargs.command({
   command: "list",
   describe: "List all notes",
   handler: function() {
-    notes.ListNotes();
+    notes.listNotes();
   }
 });
 
@@ -57,8 +57,13 @@ yargs.command({
 yargs.command({
   command: "read",
   describe: "Read this note",
-  handler: function() {
-    console.log(chalk.yellow("Reading this note..."));
+  builder: {
+    describe: "Note title",
+    demandOption: true,
+    type: "string"
+  },
+  handler(props) {
+    notes.readNote(props.title);
   }
 });
 
