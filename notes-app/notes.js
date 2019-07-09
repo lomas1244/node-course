@@ -7,7 +7,7 @@ const getNotes = function() {
 
 const addNote = function(title, body) {
   const notes = loadNotes();
-  const duplicateNotes = notes.filter(note => note.title === title);
+  const duplicateNote = notes.find(note => note.title === title);
 
   // const addNote = function(title, body) {
   // const notes = loadNotes();
@@ -15,7 +15,7 @@ const addNote = function(title, body) {
   //   return note.title === title;
   // });
 
-  if (duplicateNotes.length === 0) {
+  if (!duplicateNote) {
     notes.push({
       title: title,
       body: body
@@ -38,7 +38,13 @@ const removeNote = title => {
   saveNotes(notesToKeep);
 };
 
-const ListNotes = title => {};
+const ListNotes = () => {
+  const notes = loadNotes();
+  console.log(chalk.inverse("Your notes"));
+  notes.forEach(note => {
+    console.log(note.title);
+  });
+};
 
 const saveNotes = notes => {
   const dataJSON = JSON.stringify(notes);
